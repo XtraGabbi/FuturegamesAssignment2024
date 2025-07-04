@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cb12a7df1b30487f815e3192ff43d1f8, type: 3}
-  m_Name: Route
+  m_Name: RouteTank
   m_EditorClassIdentifier: 
   routeId: 0
   routePoints:
-  - {x: 33.4, y: 5.07, z: 0}
-  - {x: 25.7, y: 4.5, z: 20}
+  - {x: 53.7, y: 4.79, z: 10.9}
+  - {x: 41.9, y: 4.74, z: 35.1}
   showHandles: 1

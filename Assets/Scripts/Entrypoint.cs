@@ -21,6 +21,9 @@ namespace Mechadroids {
         private DebugMenuHandler debugMenuHandler;
         private UIPrefabs uiPrefabs;
 
+
+
+
         public void Initialize() {
             // Load resources if they are present in a /Resource folder anywhere in the project
             playerPrefabs = Resources.Load<PlayerPrefabs>("PlayerPrefabs");
@@ -31,6 +34,9 @@ namespace Mechadroids {
             inputHandler = new InputHandler();
             inputHandler.Initialize();
 
+
+
+
             // this define symbol, if removed from Project Settings, makes sure that in a release build this code will be stripped
 #if GAME_DEBUG
             debugMenuHandler = new DebugMenuHandler(uiPrefabs, inputHandler);
@@ -39,38 +45,54 @@ namespace Mechadroids {
             playerEntityHandler = new PlayerEntityHandler(playerPrefabs, inputHandler, playerStartPosition, followCamera, debugMenuHandler);
             playerEntityHandler.Initialize();
 
-            aiEntitiesHandler = new AIEntitiesHandler(aISettings, aiParentTransform);
-            aiEntitiesHandler.Initialize();
+           //Moved down to method
+            //aiEntitiesHandler = new AIEntitiesHandler(aISettings, aiParentTransform, playerEntityHandler.PlayerReference.transform);
+            //aiEntitiesHandler.Initialize();
 
             // it is very important to control the initialization state to avoid running tick functions with data that is not yet initialized
             initialized = true;
         }
 
+
+        public void SpawnEnemies() {
+            aiEntitiesHandler = new AIEntitiesHandler(aISettings, aiParentTransform, playerEntityHandler.PlayerReference.transform);
+            aiEntitiesHandler.Initialize();
+        }
+
+
+
+
         public void Update() {
-            if (!initialized) {
+            if(!initialized) {
                 return;
             }
             playerEntityHandler.Tick();
-            aiEntitiesHandler.Tick();
-            debugMenuHandler.Tick();
+            if(aiEntitiesHandler != null) {
+                aiEntitiesHandler.Tick();
+            }
+            debugMenuHandler?.Tick();
         }
 
         public void FixedUpdate() {
-            if (!initialized) {
+            if(!initialized) {
                 return;
             }
             playerEntityHandler.PhysicsTick();
-            aiEntitiesHandler.PhysicsTick();
+            if(aiEntitiesHandler != null) {
+                aiEntitiesHandler.PhysicsTick();
+            }
         }
 
         public void OnDestroy() {
-            if (!initialized) {
+            if(!initialized) {
                 return;
             }
             inputHandler.Dispose();
             playerEntityHandler.Dispose();
-            aiEntitiesHandler.Dispose();
-            debugMenuHandler.Dispose();
+            if(aiEntitiesHandler != null) {
+                aiEntitiesHandler.Dispose();
+            }
+            debugMenuHandler?.Dispose();
         }
     }
 }

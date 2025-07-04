@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee1b7f9b987f4edaaca80e2751b3ec99, type: 3}
-  m_Name: EnemySettings
+  m_Name: EnemySettingsTank
   m_EditorClassIdentifier: 
   enemy:
-    enemyType: 2
-    enemyReferencePrefab: {fileID: -5237617481224001347, guid: dfdf0cb776bbd654aba7d500495e4ba1, type: 3}
+    enemyType: 1
+    enemyReferencePrefab: {fileID: 1215594269258311897, guid: 35902d950096e064799095795d4d4e94, type: 3}
     totalHealth: 100
     patrolSpeed: 2
     patrolRotationSpeed: 1
@@ -23,4 +23,4 @@ MonoBehaviour:
     attackRange: 30
     attackSpeed: 7
     attackRotationSpeed: 2
-  routeSettings: {fileID: 11400000, guid: a8bfb5d8009cb854b9b77838211d900e, type: 2}
+  routeSettings: {fileID: 11400000, guid: e2cafc301fa103146bf6dd754e7530f6, type: 2}
